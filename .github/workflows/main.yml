@@ -1,26 +1,26 @@
 name: Deploy Portfolio
 
 on:
-  push:
-    branches:
-      - main
+push:
+branches:
+- main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+deploy:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+steps:
+- name: Checkout repository
+uses: actions/checkout@v3
 
-      - name: Deploy to Azure server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: azureuser
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          request_pty: true
-          script: |
-            cd /var/www/html
-            sudo -n git pull origin main
-            sudo systemctl reload apache2
+- name: Deploy to Azure server
+uses: appleboy/ssh-action@v1.0.3
+with:
+host: ${{ secrets.SERVER_IP }}
+username: azureuser
+key: ${{ secrets.SERVER_SSH_KEY }}
+request_pty: true
+script: |
+cd /var/www/html
+sudo -n git pull origin main
+sudo -n systemctl reload apache2
