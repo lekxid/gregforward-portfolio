@@ -19,7 +19,8 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: azureuser
           key: ${{ secrets.SERVER_SSH_KEY }}
+          request_pty: true
           script: |
             cd /var/www/html
-            sudo git pull origin main
+            sudo -n git pull origin main
             sudo systemctl reload apache2
