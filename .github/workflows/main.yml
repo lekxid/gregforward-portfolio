@@ -23,3 +23,4 @@ request_pty: true
 script: |
 cd /var/www/html
 sudo -n git pull origin main
+sudo -n systemctl reload apache2
