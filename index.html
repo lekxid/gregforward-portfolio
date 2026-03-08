@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GregForward | Cloud Engineer Portfolio</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(180deg,#05070b 0%, #0a1018 45%, #070a10 100%);
+color:#fff;
+line-height:1.6;
+}
+
+nav{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(6,10,15,0.92);
+backdrop-filter: blur(10px);
+border-bottom:1px solid #1d2736;
+padding:16px 24px;
+}
+
+.nav-wrap{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+color:#11e6b5;
+}
+
+.nav-links{
+display:flex;
+flex-wrap:wrap;
+gap:18px;
+}
+
+.nav-links a{
+color:#fff;
+text-decoration:none;
+font-weight:700;
+font-size:15px;
+}
+
+.nav-links a:hover{
+color:#11e6b5;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:70px 20px 40px;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+right:-120px;
+top:-120px;
+background:radial-gradient(circle, rgba(17,230,181,0.14), transparent 70%);
+pointer-events:none;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:420px;
+height:420px;
+left:-100px;
+bottom:-120px;
+background:radial-gradient(circle, rgba(0,140,255,0.12), transparent 70%);
+pointer-events:none;
+}
+
+.hero-grid{
+max-width:1200px;
+width:100%;
+display:grid;
+grid-template-columns:360px 1fr;
+gap:48px;
+align-items:center;
+position:relative;
+z-index:1;
+}
+
+.photo-card{
+background:#0f1520;
+border:1px solid #1c2635;
+border-radius:28px;
+padding:28px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,0,0,0.25);
+}
+
+.photo-card img{
+width:100%;
+max-width:260px;
+height:320px;
+object-fit:cover;
+border-radius:28px;
+border:3px solid #11e6b5;
+box-shadow:0 0 24px rgba(17,230,181,0.18);
+}
+
+.online-badge{
+display:inline-block;
+margin-top:18px;
+background:#0e2b24;
+color:#7effd8;
+border:1px solid #1f5d4f;
+padding:10px 18px;
+border-radius:999px;
+font-weight:700;
+font-size:14px;
+}
+
+.hero-text h1{
+font-size:64px;
+line-height:1.05;
+margin-bottom:12px;
+}
+
+.hero-text h2{
+font-size:30px;
+color:#11e6b5;
+margin-bottom:18px;
+}
+
+.hero-text p{
+max-width:760px;
+color:#d7dfea;
+font-size:18px;
+margin-bottom:28px;
+}
+
+.hero-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:14px;
+margin-bottom:26px;
+}
+
+.btn{
+display:inline-block;
+text-decoration:none;
+padding:14px 22px;
+border-radius:12px;
+font-weight:800;
+transition:0.25s ease;
+}
+
+.btn-primary{
+background:#11e6b5;
+color:#04110d;
+}
+
+.btn-primary:hover{
+background:#0bc89f;
+transform:translateY(-2px);
+}
+
+.btn-outline{
+border:2px solid #11e6b5;
+color:#fff;
+background:transparent;
+}
+
+.btn-outline:hover{
+background:#11e6b5;
+color:#04110d;
+transform:translateY(-2px);
+}
+
+.quick-stats{
+display:grid;
+grid-template-columns:repeat(4, minmax(120px, 1fr));
+gap:14px;
+}
+
+.quick-card{
+background:#0f1520;
+border:1px solid #1c2635;
+border-radius:18px;
+padding:18px;
+text-align:center;
+}
+
+.quick-card h3{
+color:#9fb0c9;
+font-size:14px;
+margin-bottom:8px;
+}
+
+.quick-card p{
+color:#fff;
+font-size:16px;
+font-weight:800;
+margin:0;
+}
+
+section{
+max-width:1200px;
+margin:auto;
+padding:84px 20px;
+}
+
+.section-title{
+text-align:center;
+font-size:38px;
+color:#11e6b5;
+margin-bottom:12px;
+}
+
+.section-subtitle{
+text-align:center;
+color:#bcc7d8;
+max-width:760px;
+margin:0 auto 32px;
+font-size:17px;
+}
+
+.card{
+background:#0f1520;
+border:1px solid #1c2635;
+border-radius:22px;
+padding:28px;
+box-shadow:0 0 24px rgba(0,0,0,0.18);
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1.15fr 0.85fr;
+gap:22px;
+}
+
+.about-text{
+color:#d7dfea;
+font-size:17px;
+}
+
+.about-list{
+list-style:none;
+margin-top:18px;
+}
+
+.about-list li{
+color:#d7dfea;
+margin-bottom:10px;
+}
+
+.highlight{
+color:#11e6b5;
+font-weight:800;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+gap:20px;
+}
+
+.box{
+background:#0f1520;
+border:1px solid #1c2635;
+border-radius:20px;
+padding:24px;
+transition:0.25s ease;
+}
+
+.box:hover{
+transform:translateY(-5px);
+border-color:#11e6b5;
+box-shadow:0 0 24px rgba(17,230,181,0.08);
+}
+
+.box h3{
+margin-bottom:10px;
+font-size:20px;
+}
+
+.box p{
+color:#d7dfea;
+font-size:15.5px;
+}
+
+.terminal{
+background:#05070a;
+border:1px solid #1c2635;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 0 24px rgba(0,0,0,0.22);
+}
+
+.terminal-top{
+background:#101722;
+padding:14px 18px;
+border-bottom:1px solid #1c2635;
+display:flex;
+gap:8px;
+align-items:center;
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+display:inline-block;
+}
+
+.red{background:#ff5f57;}
+.yellow{background:#ffbd2e;}
+.green{background:#28c840;}
+
+.terminal-body{
+padding:24px;
+font-family:"Courier New", monospace;
+color:#9effcf;
+font-size:16px;
+min-height:300px;
+}
+
+.terminal-line{
+margin-bottom:12px;
+white-space:pre-wrap;
+}
+
+.prompt{
+color:#11e6b5;
+font-weight:800;
+}
+
+.server-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+gap:18px;
+}
+
+.server-card{
+background:#0f1520;
+border:1px solid #1c2635;
+border-radius:18px;
+padding:22px;
+text-align:center;
+}
+
+.server-card h4{
+color:#9fb0c9;
+font-size:14px;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.server-card p{
+color:#fff;
+font-size:24px;
+font-weight:800;
+}
+
+.resume-box{
+text-align:center;
+}
+
+.resume-box p{
+color:#d7dfea;
+max-width:760px;
+margin:0 auto 20px;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+gap:20px;
+}
+
+.contact-links{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+margin-top:26px;
+}
+
+.contact-links a{
+text-decoration:none;
+color:#11e6b5;
+border:1px solid #236b5a;
+padding:10px 16px;
+border-radius:999px;
+font-weight:800;
+}
+
+.contact-links a:hover{
+background:#0d2a23;
+}
+
+footer{
+border-top:1px solid #1c2635;
+padding:28px 20px 40px;
+text-align:center;
+color:#9da9bc;
+font-size:15px;
+}
+
+@media (max-width:960px){
+.hero-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.hero-text p{
+margin-left:auto;
+margin-right:auto;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+.quick-stats{
+grid-template-columns:repeat(2, minmax(120px,1fr));
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+}
+
+@media (max-width:640px){
+.nav-wrap{
+flex-direction:column;
+}
+
+.hero-text h1{
+font-size:42px;
+}
+
+.hero-text h2{
+font-size:22px;
+}
+
+.section-title{
+font-size:30px;
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-wrap">
+<div class="logo">GregForward</div>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#terminal">Terminal</a>
+<a href="#server">Server</a>
+<a href="#resume">Resume</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-grid">
+<div class="photo-card">
+<img src="profile.jpg" alt="GregForward profile photo">
+<div class="online-badge">● Portfolio Online</div>
+</div>
+
+<div class="hero-text">
+<h1>GregForward</h1>
+<h2>Cloud Engineer & Linux Portfolio</h2>
+<p>
+Computer Systems Technician – Networking student building real hands-on skills in Linux, Azure, Apache, SSH, networking, and cloud deployment. This portfolio is hosted on my own Ubuntu cloud server with HTTPS enabled.
+</p>
+
+<div class="hero-buttons">
+<a href="resume.pdf" class="btn btn-primary">Download Resume</a>
+<a href="https://github.com/lekxid" target="_blank" class="btn btn-outline">GitHub</a>
+<a href="https://ca.linkedin.com/in/gregory-ajayi-231107363" target="_blank" class="btn btn-outline">LinkedIn</a>
+<a href="#contact" class="btn btn-outline">Contact Me</a>
+</div>
+
+<div class="quick-stats">
+<div class="quick-card">
+<h3>Platform</h3>
+<p>Azure VM</p>
+</div>
+<div class="quick-card">
+<h3>OS</h3>
+<p>Ubuntu</p>
+</div>
+<div class="quick-card">
+<h3>Web Server</h3>
+<p>Apache</p>
+</div>
+<div class="quick-card">
+<h3>Security</h3>
+<p>HTTPS</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<p class="section-subtitle">
+Who I am, what I study, and the kind of technical work I am building.
+</p>
+
+<div class="about-grid">
+<div class="card">
+<p class="about-text">
+My name is <span class="highlight">Adeleke Gregory Ajayi</span>, and I also use the name <span class="highlight">GregForward</span>. I am a Computer Systems Technician – Networking student at Georgian College in Barrie, Ontario. I am building practical experience in Linux administration, Azure virtual machines, Apache web hosting, SSH access, networking fundamentals, and cloud deployment.
+</p>
+
+<ul class="about-list">
+<li>✔ Built and deployed this portfolio on a real Ubuntu cloud server</li>
+<li>✔ Connected DuckDNS to my Azure VM</li>
+<li>✔ Enabled HTTPS with Let’s Encrypt SSL</li>
+<li>✔ Practicing cloud, Linux, and networking skills through real projects</li>
+</ul>
+</div>
+
+<div class="card">
+<p class="about-text"><span class="highlight">Location</span><br>Barrie, Ontario, Canada</p>
+<br>
+<p class="about-text"><span class="highlight">Focus</span><br>Cloud, Linux, Networking, Infrastructure</p>
+<br>
+<p class="about-text"><span class="highlight">Website</span><br>gregforward.duckdns.org</p>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2 class="section-title">Skills</h2>
+<p class="section-subtitle">
+My current technical stack and the tools I am actively learning.
+</p>
+
+<div class="grid">
+<div class="box">
+<h3>Linux</h3>
+<p>Ubuntu server usage, command line administration, package installation, file management, permissions, and SSH access.</p>
+</div>
+<div class="box">
+<h3>Azure Cloud</h3>
+<p>Virtual machine deployment, inbound security rules, public IP usage, remote access, and live hosting.</p>
+</div>
+<div class="box">
+<h3>Apache</h3>
+<p>Web server setup, document root management, static website hosting, and SSL deployment.</p>
+</div>
+<div class="box">
+<h3>Networking</h3>
+<p>IP addressing, subnetting, routing basics, lab work, and networking concepts from CSTN coursework.</p>
+</div>
+<div class="box">
+<h3>Windows Server</h3>
+<p>Basic Active Directory, user setup, server labs, and beginner administration practice.</p>
+</div>
+<div class="box">
+<h3>Technical Support</h3>
+<p>Troubleshooting, software setup, file transfer, and problem-solving through practical exercises.</p>
+</div>
+</div>
+</section>
+
+<section id="projects">
+<h2 class="section-title">Projects</h2>
+<p class="section-subtitle">
+Practical projects I have already built through coursework and self-learning.
+</p>
+
+<div class="grid">
+<div class="box">
+<h3>Azure Portfolio Website</h3>
+<p>Built and deployed my personal portfolio on an Ubuntu Azure VM using Apache, SSH, DuckDNS, and HTTPS.</p>
+</div>
+<div class="box">
+<h3>Linux Server Practice</h3>
+<p>Worked with Linux commands, folder paths, package installation, SCP, permissions, and remote server access.</p>
+</div>
+<div class="box">
+<h3>Networking Labs</h3>
+<p>Practiced IP addressing, subnetting, routing, and network design through CSTN technical labs.</p>
+</div>
+<div class="box">
+<h3>Windows Server Lab</h3>
+<p>Configured basic Windows Server tasks, user management, and beginner Active Directory lab work.</p>
+</div>
+</div>
+</section>
+
+<section id="terminal">
+<h2 class="section-title">Terminal Preview</h2>
+<p class="section-subtitle">
+A Linux terminal-style section to reflect my cloud and server learning path.
+</p>
+
+<div class="terminal">
+<div class="terminal-top">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<div class="terminal-body">
+<div class="terminal-line"><span class="prompt">greg@azure:~$</span> whoami</div>
+<div class="terminal-line">GregForward</div>
+
+<div class="terminal-line"><span class="prompt">greg@azure:~$</span> role</div>
+<div class="terminal-line">Computer Systems Technician – Networking Student</div>
+
+<div class="terminal-line"><span class="prompt">greg@azure:~$</span> stack</div>
+<div class="terminal-line">Ubuntu, Azure, Apache, SSH, DuckDNS, Let’s Encrypt</div>
+
+<div class="terminal-line"><span class="prompt">greg@azure:~$</span> project-status</div>
+<div class="terminal-line">Portfolio deployed successfully with HTTPS enabled</div>
+
+<div class="terminal-line"><span class="prompt">greg@azure:~$</span> echo "Always learning."</div>
+<div class="terminal-line">Always learning.</div>
+</div>
+</div>
+</section>
+
+
+<section id="server">
+
+<h2 class="section-title">Server Dashboard</h2>
+<p class="section-subtitle">Core server details behind this live portfolio.</p>
+
+<div class="server-grid">
+
+<div class="server-card">
+<h4>Status</h4>
+<p>ONLINE</p>
+</div>
+
+<div class="server-card">
+<h4>Host</h4>
+<p>Azure VM</p>
+</div>
+
+<div class="server-card">
+<h4>OS</h4>
+<p>Ubuntu</p>
+</div>
+
+<div class="server-card">
+<h4>Web Server</h4>
+<p>Apache</p>
+</div>
+
+<div class="server-card">
+<h4>Domain</h4>
+<p>DuckDNS</p>
+</div>
+
+<div class="server-card">
+<h4>Security</h4>
+<p>HTTPS</p>
+</div>
+
+<div class="server-card">
+<h4>CPU Cores</h4>
+<p id="cpu">Loading...</p>
+</div>
+
+<div class="server-card">
+<h4>RAM Used</h4>
+<p id="ram">Loading...</p>
+</div>
+
+<div class="server-card">
+<h4>Total RAM</h4>
+<p id="total">Loading...</p>
+</div>
+
+<div class="server-card">
+<h4>Uptime</h4>
+<p id="uptime">Loading...</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="resume">
+<h2 class="section-title">Resume</h2>
+<p class="section-subtitle">
+Download my resume directly from this cloud-hosted server.
+</p>
+
+<div class="card resume-box">
+<p>
+My resume is hosted on the same Ubuntu server as this portfolio. Use the button below to download it.
+</p>
+<a href="resume.pdf" class="btn btn-primary">Download Resume</a>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact</h2>
+<p class="section-subtitle">
+Reach out for job opportunities, networking, or technical collaboration.
+</p>
+
+<div class="contact-grid">
+<div class="box">
+<h3>Main Email</h3>
+<p>lekxid@gmail.com</p>
+</div>
+<div class="box">
+<h3>Second Email</h3>
+<p>adelekeajayi001@gmail.com</p>
+</div>
+<div class="box">
+<h3>GitHub</h3>
+<p>github.com/lekxid</p>
+</div>
+<div class="box">
+<h3>LinkedIn</h3>
+<p>Gregory Ajayi</p>
+</div>
+</div>
+
+<div class="contact-links">
+<a href="mailto:lekxid@gmail.com">Main Email</a>
+<a href="mailto:adelekeajayi001@gmail.com">Second Email</a>
+<a href="https://github.com/lekxid" target="_blank">GitHub</a>
+<a href="https://ca.linkedin.com/in/gregory-ajayi-231107363" target="_blank">LinkedIn</a>
+</div>
+</section>
+
+<footer>
+Built by GregForward | Hosted on Ubuntu, Apache, Azure, DuckDNS, and Let’s Encrypt
+</footer>
+
+<script>
+
+fetch("/stats")
+.then(response => response.json())
+.then(data => {
+
+document.getElementById("cpu").innerText = data.cpu_cores
+document.getElementById("ram").innerText = data.memory_used
+document.getElementById("total").innerText = data.memory_total
+document.getElementById("uptime").innerText = data.uptime
+
+})
+
+</script>
+
+</body>
+</html>
+
