@@ -21,5 +21,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /var/www/html
-            git pull origin main
+            sudo git pull origin main
             sudo systemctl reload apache2
