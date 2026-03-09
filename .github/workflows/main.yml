@@ -21,17 +21,10 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           request_pty: true
           script: |
-            echo "USER:"
             whoami
-
-            echo "HOST:"
             hostname
-
-            echo "TEST SUDO:"
             sudo -n true
             echo $?
-
-            echo "DEPLOY:"
             cd /var/www/html
             sudo -n git pull origin main
             sudo -n systemctl reload apache2
