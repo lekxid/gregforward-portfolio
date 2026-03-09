@@ -16,9 +16,9 @@ jobs:
       - name: Deploy to Azure server
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.SERVER_IP }}
           username: azureuser
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             echo "USER:"
             whoami
