@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GregForward Portfolio</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 100px;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #00ffcc;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 80%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #form-status {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GregForward</h1>
+
+    <img src="profile.jpg" alt="GregForward Profile Photo">
+
+    <h2>Cloud & Linux Portfolio</h2>
+
+    <p>Welcome to my personal server hosted portfolio.</p>
+
+    <p>Computer Systems Technician – Networking Student</p>
+
+    <p>
+      <a href="resume.pdf" target="_blank">Download Resume</a>
+    </p>
+
+    <br><br>
+
+    <h2>Contact Me</h2>
+
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <br>
+
+      <input type="email" id="email" placeholder="Your Email" required>
+      <br>
+
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <br>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <p id="form-status"></p>
+  </div>
+
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      const status = document.getElementById("form-status");
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        status.innerText = result.message;
+
+        if (response.ok) {
+          document.getElementById("contact-form").reset();
+        }
+      } catch (error) {
+        status.innerText = "Error sending message";
+      }
+    });
+  </script>
+</body>
+</html>
