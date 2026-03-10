@@ -23,6 +23,13 @@ flowchart TD
     C --> B
     C --> D
 
+## Step 2.3 — Add a short explanation under it
+Right under that diagram, add this:
+
+```markdown
+This portfolio uses Apache as the public HTTPS entry point, which serves the frontend and reverse proxies API requests to a Flask backend running with Gunicorn. The backend connects to a PostgreSQL database, while Docker Compose manages the application services on the Azure Ubuntu VM. GitHub Actions is used for CI/CD deployment automation.
+
+
 User → Apache HTTPS Reverse Proxy → Flask API (Gunicorn) → PostgreSQL
 
 ## Infrastructure Stack
