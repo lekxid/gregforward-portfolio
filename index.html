@@ -591,19 +591,37 @@
     </section>
 
     <section id="cloud-architecture">
-      <h2>Cloud Architecture</h2>
-      <p class="section-lead">
-        This portfolio runs on a production-style cloud infrastructure deployed on a Microsoft Azure Ubuntu
-        virtual machine using Docker containers, Caddy reverse proxy, GitHub Actions CI/CD, DuckDNS routing,
-        backend APIs, PostgreSQL, and WireGuard VPN services.
-      </p>
+  <h2>Cloud Architecture</h2>
+  <p class="section-lead">
+    This portfolio runs on a production-style cloud infrastructure deployed on a Microsoft Azure Ubuntu
+    virtual machine using Docker containers, Caddy reverse proxy, GitHub Actions CI/CD, DuckDNS routing,
+    backend APIs, PostgreSQL, and WireGuard VPN services.
+  </p>
 
-      <img
-        src="./docker-containers.png"
-        alt="Cloud architecture diagram showing Azure VM, Docker containers, reverse proxy, backend API, PostgreSQL, and WireGuard services"
-        class="architecture-image"
-      />
-    </section>
+  <div class="card" style="margin-top: 18px;">
+    <div style="font-family: monospace; white-space: pre-wrap; color: #dfffe8; line-height: 1.9;">
+User Browser
+   ↓
+DuckDNS Domain
+   ↓
+Caddy Reverse Proxy
+   ↓
+Portfolio Frontend Container
+   ↓
+Backend API Container
+   ↓
+PostgreSQL Database
+
+GitHub Repository
+   ↓
+GitHub Actions CI/CD
+   ↓
+Azure Ubuntu VM
+   ↓
+Docker Runtime
+    </div>
+  </div>
+</section>
 
     <section id="skills">
       <h2>Technical Skills</h2>
@@ -658,62 +676,64 @@
   </main>
 
   <script>
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("form-status");
-    const submitBtn = document.getElementById("submit-btn");
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const submitBtn = document.getElementById("submit-btn");
 
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      const data = {
-        name: document.getElementById("name").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        message: document.getElementById("message").value.trim()
-      };
+    const data = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      message: document.getElementById("message").value.trim()
+    };
 
-      if (!data.name || !data.email || !data.message) {
-        status.style.color = "#ffb3b3";
-        status.innerText = "Please complete all fields before sending.";
-        return;
-      }
+    if (!data.name || !data.email || !data.message) {
+      status.style.color = "#ffb3b3";
+      status.innerText = "Please complete all fields before sending.";
+      return;
+    }
 
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Sending...";
-      status.style.color = "#9dffcf";
-      status.innerText = "Sending message...";
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+    status.style.color = "#9dffcf";
+    status.innerText = "Sending message...";
 
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      const text = await response.text();
+
+      let result = {};
       try {
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        });
-
-        let result = {};
-        try {
-          result = await response.json();
-        } catch (jsonError) {
-          result = {};
-        }
-
-        if (response.ok) {
-          status.style.color = "#9dffcf";
-          status.innerText = result.message || "Message sent successfully.";
-          form.reset();
-        } else {
-          status.style.color = "#ffb3b3";
-          status.innerText = result.message || "Unable to send message right now.";
-        }
-      } catch (error) {
-        status.style.color = "#ffb3b3";
-        status.innerText = "Network error. Please try again.";
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Send Message";
+        result = JSON.parse(text);
+      } catch {
+        result = { message: text || "Unexpected server response." };
       }
-    });
-  </script>
+
+      if (response.ok) {
+        status.style.color = "#9dffcf";
+        status.innerText = result.message || "Message sent successfully.";
+        form.reset();
+      } else {
+        status.style.color = "#ffb3b3";
+        status.innerText = result.message || `Request failed with status ${response.status}.`;
+      }
+    } catch (error) {
+      status.style.color = "#ffb3b3";
+      status.innerText = "Network error. Please try again.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
+    }
+  });
+</script>
 </body>
 </html>

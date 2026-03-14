@@ -1,0 +1,13 @@
+gregforward.duckdns.org {
+    handle /api/* {
+        reverse_proxy 127.0.0.1:5001
+    }
+
+    handle {
+        reverse_proxy 127.0.0.1:8080
+    }
+}
+
+spiritlove.duckdns.org {
+    reverse_proxy 127.0.0.1:51821
+}
