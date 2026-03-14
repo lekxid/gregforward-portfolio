@@ -1,25 +1,44 @@
 # Greg Forward Cloud Portfolio
 
-**Live Site:**
+**Live Portfolio:**  
 https://gregforward.duckdns.org
+
+**WireGuard Access:**  
+https://spiritlove.duckdns.org
 
 ---
 
 # Overview
 
-This project is a production-style cloud portfolio deployed on an Azure Ubuntu virtual machine.
+This project is a production-style cloud portfolio deployed on a Microsoft Azure Ubuntu virtual machine.
 
 It demonstrates practical **cloud infrastructure and DevOps concepts** including:
 
-* reverse proxy architecture
-* HTTPS security
-* containerized backend services
-* API deployment
-* PostgreSQL database integration
-* CI/CD automation
-* live monitoring
+- reverse proxy architecture
+- HTTPS security with automatic SSL certificates
+- Dockerized deployment
+- GitHub Actions CI/CD automation
+- domain routing with DuckDNS
+- secure service separation
+- WireGuard VPN integration
+- container-based production hosting
 
-The project is designed to simulate a **real-world production deployment environment**.
+This project is designed to simulate a **real-world cloud deployment environment** with automated updates and secure public access.
+
+---
+
+# Current Production Stack
+
+The live environment currently includes:
+
+- **Microsoft Azure Ubuntu Virtual Machine**
+- **Caddy reverse proxy**
+- **Portfolio frontend container**
+- **GitHub Actions CI/CD pipeline**
+- **DuckDNS domain mapping**
+- **Automatic HTTPS / SSL certificate management**
+- **WireGuard VPN service**
+- **Docker-based service deployment**
 
 ---
 
@@ -27,26 +46,15 @@ The project is designed to simulate a **real-world production deployment environ
 
 ```mermaid
 flowchart TD
-    U[User Browser] -->|HTTPS| A[Apache Reverse Proxy]
+    U[User Browser] -->|HTTPS| C[Caddy Reverse Proxy]
 
-    A -->|Static Website| F[Portfolio Frontend]
+    C -->|gregforward.duckdns.org| P[Portfolio Container]
+    C -->|spiritlove.duckdns.org| W[WireGuard Service]
 
-    A -->|/api| B[Flask API via Gunicorn]
+    G[GitHub Repository] -->|Push to main| A[GitHub Actions CI/CD]
+    A -->|SSH Deploy| V[Azure Ubuntu VM]
 
-    B --> D[(PostgreSQL Database)]
-
-    B --> H[API Health Check]
-
-    G[GitHub Repository] -->|Push| CI[GitHub Actions CI/CD]
-
-    CI -->|Deploy| V[Azure Ubuntu VM]
-
-    V --> DC[Docker Compose]
-
-    DC --> B
-    DC --> D
-```
-
-This system uses **Apache as the public HTTPS gateway**, which serves the frontend portfolio and reverse proxies API requests to a **Flask backend running with Gunicorn**.
-
-The backend communicates with a **PostgreSQL database** for persistent s
+    V --> D[Docker Runtime]
+    D --> C
+    D --> P
+    D --> W
