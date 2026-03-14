@@ -26,5 +26,7 @@ jobs:
             sudo -n true
             echo $?
             cd /var/www/html
-            sudo -n git pull origin main
-            sudo -n systemctl reload apache2
+            sudo git reset --hard
+            sudo git pull origin main
+            docker restart portfolio-container
+            docker restart caddy-proxy
