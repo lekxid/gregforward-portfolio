@@ -3,77 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GregForward Portfolio</title>
+  <title>GregForward | Cloud / DevOps / AI Engineer</title>
+  <meta
+    name="description"
+    content="GregForward portfolio showcasing live Azure cloud infrastructure, Docker containers, Caddy reverse proxy, PostgreSQL backend, WireGuard VPN, and GitHub Actions CI/CD."
+  />
+  <meta name="theme-color" content="#0b1510" />
+
   <style>
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-1: #050505;
+      --bg-2: #0d1b12;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-2: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #d6d6d6;
+      --soft: #a7b0ab;
+      --accent: #c8ff59;
+      --accent-2: #9dffcf;
+      --gold: #f5d35c;
+      --ok-bg: rgba(200, 255, 89, 0.08);
+      --ok-border: rgba(200, 255, 89, 0.25);
+      --ok-text: #eaffb6;
+      --danger: #ff8f8f;
+      --shadow: 0 0 24px rgba(0, 255, 170, 0.05);
+      --max-width: 1180px;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #050505, #0d1b12);
-      color: white;
-      line-height: 1.6;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 5, 5, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.4px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f1f1;
+    }
+
+    .nav-links a {
+      opacity: 0.92;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      opacity: 1;
     }
 
     .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 60px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 20px 70px;
     }
 
     .top-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: rgba(0, 255, 170, 0.12);
       border: 1px solid rgba(0, 255, 170, 0.35);
-      color: #9dffcf;
+      color: var(--accent-2);
       padding: 8px 14px;
       border-radius: 999px;
       font-size: 14px;
       margin-bottom: 20px;
+      font-weight: 700;
     }
 
     .hero {
       display: grid;
       grid-template-columns: 280px 1fr;
-      gap: 30px;
+      gap: 34px;
       align-items: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      padding: 30px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
       box-shadow: 0 0 30px rgba(0, 255, 170, 0.08);
     }
 
-    .hero img {
+    .hero-photo {
       width: 100%;
       max-width: 260px;
       border-radius: 22px;
-      border: 3px solid #b6ff5c;
-      display: block;
+      border: 3px solid var(--accent);
       margin: auto;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-tag {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-size: 14px;
     }
 
     h1 {
       font-size: 56px;
       line-height: 1.05;
       margin: 0 0 12px;
-      color: #ffffff;
     }
 
     .subtitle {
       font-size: 22px;
-      color: #9dffcf;
-      font-weight: bold;
+      color: var(--accent-2);
+      font-weight: 800;
       margin-bottom: 16px;
     }
 
     .hero p {
       font-size: 18px;
-      color: #d6d6d6;
+      color: var(--muted);
       margin-bottom: 22px;
-      max-width: 700px;
+      max-width: 760px;
     }
 
     .button-group {
@@ -85,15 +183,16 @@
     .btn {
       display: inline-block;
       padding: 13px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
       transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-primary {
-      background: #c8ff59;
+      background: var(--accent);
       color: #111;
     }
 
@@ -114,18 +213,26 @@
 
     section {
       margin-top: 32px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: 0 0 18px rgba(0, 255, 170, 0.04);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
     }
 
     h2 {
-      font-size: 30px;
+      font-size: 32px;
       margin-top: 0;
-      margin-bottom: 18px;
-      color: #c8ff59;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 0;
+      margin-bottom: 22px;
+      max-width: 860px;
     }
 
     .grid-2 {
@@ -135,16 +242,68 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 18px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
     }
 
     .card h3 {
       margin-top: 0;
+      margin-bottom: 10px;
       color: #ffffff;
       font-size: 20px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .infra-list {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .infra-list li {
+      margin-bottom: 10px;
+      color: #e7e7e7;
+    }
+
+    .status-box {
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      color: var(--ok-text);
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 800;
+      margin-top: 16px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f0f0f0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .architecture-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 18px;
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .skills {
@@ -160,41 +319,36 @@
       border: 1px solid rgba(0, 255, 170, 0.2);
       color: #bafee0;
       font-size: 15px;
+      font-weight: 700;
     }
 
-    .infra-list {
-      padding-left: 20px;
-      margin: 0;
-    }
-
-    .infra-list li {
-      margin-bottom: 10px;
-      color: #e4e4e4;
-    }
-
-    .status-box {
-      background: rgba(200, 255, 89, 0.08);
-      border: 1px solid rgba(200, 255, 89, 0.25);
-      color: #eaffb6;
-      padding: 16px;
-      border-radius: 14px;
-      font-weight: bold;
-      margin-top: 16px;
+    .contact-note {
+      color: var(--muted);
+      margin-bottom: 8px;
     }
 
     form {
       margin-top: 10px;
     }
 
-    input, textarea {
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      color: #f1f1f1;
+    }
+
+    input,
+    textarea {
       width: 100%;
       padding: 14px;
-      margin: 10px 0;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       background: rgba(255, 255, 255, 0.05);
       color: white;
       font-size: 16px;
+      outline: none;
     }
 
     input::placeholder,
@@ -202,28 +356,46 @@
       color: #bbbbbb;
     }
 
-    button {
+    input:focus,
+    textarea:focus {
+      border-color: rgba(200, 255, 89, 0.5);
+      box-shadow: 0 0 0 3px rgba(200, 255, 89, 0.08);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    button[type="submit"] {
+      margin-top: 14px;
       padding: 14px 24px;
-      background: #c8ff59;
+      background: var(--accent);
       color: #111;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 800;
       transition: 0.2s ease;
     }
 
-    button:hover {
+    button[type="submit"]:hover {
       opacity: 0.95;
       transform: translateY(-1px);
     }
 
+    button[type="submit"]:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     #form-status {
       margin-top: 16px;
-      font-size: 17px;
-      color: #9dffcf;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 800;
+      min-height: 24px;
     }
 
     footer {
@@ -233,10 +405,19 @@
       font-size: 14px;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 980px) {
       .hero,
       .grid-2 {
         grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
       }
 
       h1 {
@@ -247,22 +428,54 @@
         font-size: 20px;
       }
     }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 20px 14px 50px;
+      }
+
+      .hero,
+      section {
+        padding: 22px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .hero p,
+      .section-lead,
+      .card p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">GregForward</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="#projects">Projects</a>
+        <a href="#cloud-architecture">Architecture</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
     <div class="top-badge">● Live Cloud Infrastructure Online</div>
 
     <section class="hero">
       <div>
-        <img src="profile.jpg" alt="GregForward Profile Photo" />
+        <img class="hero-photo" src="profile.jpg" alt="Portrait of Adeleke Gregory Ajayi" />
       </div>
 
       <div>
-        <div style="color:#f5d35c; font-weight:bold; letter-spacing:2px; margin-bottom:10px;">
-          CLOUD • DEVOPS • AI
-        </div>
-
+        <div class="hero-tag">CLOUD • DEVOPS • AI</div>
         <h1>Adeleke Gregory Ajayi</h1>
         <div class="subtitle">Cloud / DevOps / AI Engineer</div>
 
@@ -275,7 +488,7 @@
 
         <div class="button-group">
           <a class="btn btn-primary" href="#infrastructure">View Infrastructure</a>
-          <a class="btn btn-secondary" href="resume.pdf" target="_blank">Download Resume</a>
+          <a class="btn btn-secondary" href="resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
           <a class="btn btn-secondary" href="#contact">Contact Me</a>
         </div>
       </div>
@@ -283,15 +496,30 @@
 
     <section id="about">
       <h2>About Me</h2>
-      <p>
-        I am a Computer Systems Technician – Networking student focused on cloud systems, Linux administration,
-        Docker containerization, secure networking, backend deployment, and infrastructure automation.
-        I enjoy building hands-on technical projects that combine practical server management with modern DevOps workflows.
+      <p class="section-lead">
+        I am a Computer Systems Technician – Networking student focused on cloud systems,
+        Linux administration, Docker containerization, secure networking, backend deployment,
+        and infrastructure automation. I enjoy building hands-on technical projects that combine
+        practical server management with modern DevOps workflows.
       </p>
+
+      <div class="badge-row">
+        <span class="mini-badge">Azure VM Deployment</span>
+        <span class="mini-badge">Docker Containers</span>
+        <span class="mini-badge">Caddy Reverse Proxy</span>
+        <span class="mini-badge">PostgreSQL Backend</span>
+        <span class="mini-badge">WireGuard VPN</span>
+        <span class="mini-badge">GitHub Actions CI/CD</span>
+      </div>
     </section>
 
     <section id="infrastructure">
       <h2>Cloud Infrastructure</h2>
+      <p class="section-lead">
+        My live environment is hosted on Microsoft Azure and structured like a production-style deployment,
+        combining secure public access, containerized services, backend integration, and automated delivery.
+      </p>
+
       <div class="grid-2">
         <div class="card">
           <h3>Live Production Stack</h3>
@@ -306,14 +534,15 @@
         </div>
 
         <div class="card">
-          <h3>Architecture Overview</h3>
+          <h3>Deployment Flow</h3>
           <p>
-            Internet traffic reaches my Azure VM through Caddy on ports 80 and 443.
-            Caddy securely routes requests to the portfolio and WireGuard services,
-            while Docker manages the containers and isolates application components.
+            Code is version-controlled in GitHub and deployed through a repeatable GitHub Actions workflow.
+            The Azure VM runs Docker-based services, while Caddy securely routes incoming requests to the
+            appropriate containers and endpoints.
           </p>
+
           <div class="status-box">
-            CI/CD deployment active — updates can be deployed automatically from GitHub.
+            CI/CD deployment active — updates can be delivered from GitHub to the live server.
           </div>
         </div>
       </div>
@@ -321,6 +550,11 @@
 
     <section id="projects">
       <h2>Featured Projects</h2>
+      <p class="section-lead">
+        These projects demonstrate practical skills across cloud hosting, containerization,
+        VPN deployment, backend services, and infrastructure automation.
+      </p>
+
       <div class="grid-2">
         <div class="card">
           <h3>Azure Cloud Portfolio Server</h3>
@@ -355,26 +589,29 @@
         </div>
       </div>
     </section>
-    
-    <section id="cloud-architecture" style="margin-top:60px;">
-  <h2>Cloud Architecture</h2>
 
-  <p>
-  This portfolio runs on a production-style cloud infrastructure deployed
-  on a Microsoft Azure Ubuntu virtual machine.
-  </p>
+    <section id="cloud-architecture">
+      <h2>Cloud Architecture</h2>
+      <p class="section-lead">
+        This portfolio runs on a production-style cloud infrastructure deployed on a Microsoft Azure Ubuntu
+        virtual machine using Docker containers, Caddy reverse proxy, GitHub Actions CI/CD, DuckDNS routing,
+        backend APIs, PostgreSQL, and WireGuard VPN services.
+      </p>
 
-  <p>
-  The system uses Docker containers, a Caddy reverse proxy for automatic
-  HTTPS, GitHub Actions for CI/CD automation, and DuckDNS for domain routing.
-  </p>
+      <img
+        src="./docker-containers.png"
+        alt="Cloud architecture diagram showing Azure VM, Docker containers, reverse proxy, backend API, PostgreSQL, and WireGuard services"
+        class="architecture-image"
+      />
+    </section>
 
-  <img src="./docker-containers.png" alt="Cloud Architecture Diagram"
-     style="max-width:100%; border-radius:10px; margin-top:20px;">
-</section>
-        
     <section id="skills">
       <h2>Technical Skills</h2>
+      <p class="section-lead">
+        My current technical focus includes cloud infrastructure, Linux server administration,
+        container platforms, secure networking, backend systems, and deployment automation.
+      </p>
+
       <div class="skills">
         <div class="skill">Microsoft Azure</div>
         <div class="skill">Ubuntu Linux</div>
@@ -388,41 +625,62 @@
         <div class="skill">CI/CD</div>
         <div class="skill">Networking</div>
         <div class="skill">Backend APIs</div>
+        <div class="skill">Linux Administration</div>
+        <div class="skill">Cloud Deployment</div>
       </div>
     </section>
 
     <section id="contact">
       <h2>Contact Me</h2>
-      <p>
+      <p class="contact-note">
         Feel free to reach out for internships, technical opportunities, collaboration, or networking.
       </p>
 
       <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required />
-        <input type="email" id="email" placeholder="Your Email" required />
-        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit">Send Message</button>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+
+        <button type="submit" id="submit-btn">Send Message</button>
       </form>
 
-      <p id="form-status"></p>
+      <p id="form-status" aria-live="polite"></p>
     </section>
 
     <footer>
       © 2026 GregForward Portfolio — Live on Azure with Docker, HTTPS, and CI/CD
     </footer>
-  </div>
+  </main>
 
   <script>
-    document.getElementById("contact-form").addEventListener("submit", async function (e) {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim()
       };
 
-      const status = document.getElementById("form-status");
+      if (!data.name || !data.email || !data.message) {
+        status.style.color = "#ffb3b3";
+        status.innerText = "Please complete all fields before sending.";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+      status.style.color = "#9dffcf";
+      status.innerText = "Sending message...";
 
       try {
         const response = await fetch("/api/contact", {
@@ -433,14 +691,27 @@
           body: JSON.stringify(data)
         });
 
-        const result = await response.json();
-        status.innerText = result.message;
+        let result = {};
+        try {
+          result = await response.json();
+        } catch (jsonError) {
+          result = {};
+        }
 
         if (response.ok) {
-          document.getElementById("contact-form").reset();
+          status.style.color = "#9dffcf";
+          status.innerText = result.message || "Message sent successfully.";
+          form.reset();
+        } else {
+          status.style.color = "#ffb3b3";
+          status.innerText = result.message || "Unable to send message right now.";
         }
       } catch (error) {
-        status.innerText = "Error sending message";
+        status.style.color = "#ffb3b3";
+        status.innerText = "Network error. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send Message";
       }
     });
   </script>
