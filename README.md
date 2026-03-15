@@ -1,32 +1,123 @@
-# Cloud Architecture
 
-This project is deployed using a containerized production stack running on a Microsoft Azure Ubuntu virtual machine.
+---
 
-The infrastructure uses Docker containers, a Caddy reverse proxy, GitHub Actions CI/CD, and DuckDNS domain routing.
+# Infrastructure Stack
 
-```mermaid
-flowchart TD
+**Cloud Provider**
 
-U[User Browser] -->|HTTPS| D[DuckDNS Domain]
+Microsoft Azure Ubuntu VM
 
-D --> C[Caddy Reverse Proxy]
+**Containerization**
 
-C --> P[Portfolio Frontend Container]
-C --> W[WireGuard VPN Service]
+Docker  
+Docker Compose
 
-P --> B[Backend API Container]
+**Networking**
 
-B --> DB[(PostgreSQL Database)]
+Caddy Reverse Proxy  
+DuckDNS Domain Routing  
+WireGuard VPN
 
-G[GitHub Repository] -->|Push to main| A[GitHub Actions CI/CD]
+**Backend Services**
 
-A -->|SSH Deploy| V[Azure Ubuntu VM]
+Python Flask API  
+Gunicorn WSGI server  
+PostgreSQL Database
 
-V --> DR[Docker Runtime]
+**DevOps**
 
-DR --> C
-DR --> P
-DR --> B
-DR --> DB
-DR --> W
-```
+GitHub Actions CI/CD  
+Git Version Control  
+Automated deployments
+
+---
+
+# Key Features
+
+Live HTTPS Cloud Portfolio
+
+Containerized production infrastructure
+
+Reverse proxy domain routing
+
+Secure VPN deployment
+
+Backend API services
+
+Database-connected architecture
+
+Continuous deployment workflow
+
+---
+
+# Screenshots
+
+## Cloud Architecture
+
+![Cloud Architecture](docker-containers.png)
+
+---
+
+# Projects Included
+
+## Azure Cloud Portfolio Server
+
+Production cloud environment hosted on Azure using Docker containers and reverse proxy routing.
+
+## WireGuard VPN Deployment
+
+Secure VPN service deployed with domain access and container isolation.
+
+## Backend API Infrastructure
+
+REST API built using Flask and deployed with Gunicorn inside Docker.
+
+## CI/CD Pipeline
+
+GitHub-based workflow used to deploy updates from the repository to the cloud server.
+
+---
+
+# Skills Demonstrated
+
+Cloud Infrastructure Engineering
+
+Linux Server Administration
+
+Containerization with Docker
+
+Reverse Proxy Networking
+
+DevOps Deployment Pipelines
+
+Backend API Development
+
+Database Integration
+
+VPN Networking
+
+---
+
+# Contact
+
+Adeleke Gregory Ajayi
+
+LinkedIn  
+https://www.linkedin.com/in/gregory-ajayi
+
+GitHub  
+https://github.com/lekxid
+
+Email  
+adelekeajayi001@gmail.com
+
+---
+
+# Portfolio Status
+
+Infrastructure Status: **Online**
+
+Stack:  
+Azure VM + Docker + Caddy + Backend API + HTTPS + CI/CD
+
+This project is actively maintained and used as a personal cloud engineering lab.
