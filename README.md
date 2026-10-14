@@ -4,7 +4,7 @@ Adeleke Gregory Ajayi's cloud, DevOps, networking, and AI learning portfolio.
 
 ## Website
 
-https://gregforward.duckdns.org
+https://gregforward.lekxid.workers.dev
 
 Responsive static frontend with project filters, four project detail pages, a documented architecture walkthrough, a downloadable resume, and accessible contact composition.
 
