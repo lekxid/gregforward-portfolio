@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gregforward.duckdns.org/sitemap.xml

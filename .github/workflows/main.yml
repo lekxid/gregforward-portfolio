@@ -1,32 +1,40 @@
-name: Deploy Portfolio
-
+name: Validate and publish portfolio
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: portfolio-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Deploy to Azure server
-        uses: appleboy/ssh-action@v1.0.3
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: azureuser
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          request_pty: true
-          script: |
-            whoami
-            hostname
-            sudo -n true
-            echo $?
-            cd /var/www/html
-            sudo git reset --hard
-            sudo git pull origin main
-            docker restart portfolio-container
-            docker restart caddy-proxy
+          node-version: '22'
+      - run: node --check assets/app.js
+      - run: node scripts/check.mjs --build
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: dist
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: validate
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish validated static assets
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+
