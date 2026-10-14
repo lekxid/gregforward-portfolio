@@ -1,123 +1,27 @@
+# GregForward portfolio
 
----
+Adeleke Gregory Ajayi's cloud, DevOps, networking, and AI learning portfolio.
 
-# Infrastructure Stack
+## Website
 
-**Cloud Provider**
+https://gregforward.duckdns.org
 
-Microsoft Azure Ubuntu VM
+Responsive static frontend with project filters, four project detail pages, a documented architecture walkthrough, a downloadable resume, and accessible contact composition.
 
-**Containerization**
+## Development
 
-Docker  
-Docker Compose
+No package installation or build framework is required.
 
-**Networking**
+```
+node --check assets/app.js
+node scripts/check.mjs --build
+python -m http.server 8765 --directory dist
+```
 
-Caddy Reverse Proxy  
-DuckDNS Domain Routing  
-WireGuard VPN
+The production artifact contains only public assets. The original profile photo remains in source; the frontend loads a smaller, metadata-stripped WebP derivative.
 
-**Backend Services**
+## Infrastructure scope
 
-Python Flask API  
-Gunicorn WSGI server  
-PostgreSQL Database
+The existing project documents an Azure Ubuntu VM, Docker, Caddy, Flask/Gunicorn, PostgreSQL, and WireGuard. The current public hostname serves GitHub Pages. Backend source and active VM configuration are not in this repository. No live infrastructure status is asserted without measurements.
 
-**DevOps**
-
-GitHub Actions CI/CD  
-Git Version Control  
-Automated deployments
-
----
-
-# Key Features
-
-Live HTTPS Cloud Portfolio
-
-Containerized production infrastructure
-
-Reverse proxy domain routing
-
-Secure VPN deployment
-
-Backend API services
-
-Database-connected architecture
-
-Continuous deployment workflow
-
----
-
-# Screenshots
-
-## Cloud Architecture
-
-![Cloud Architecture](docker-containers.png)
-
----
-
-# Projects Included
-
-## Azure Cloud Portfolio Server
-
-Production cloud environment hosted on Azure using Docker containers and reverse proxy routing.
-
-## WireGuard VPN Deployment
-
-Secure VPN service deployed with domain access and container isolation.
-
-## Backend API Infrastructure
-
-REST API built using Flask and deployed with Gunicorn inside Docker.
-
-## CI/CD Pipeline
-
-GitHub-based workflow used to deploy updates from the repository to the cloud server.
-
----
-
-# Skills Demonstrated
-
-Cloud Infrastructure Engineering
-
-Linux Server Administration
-
-Containerization with Docker
-
-Reverse Proxy Networking
-
-DevOps Deployment Pipelines
-
-Backend API Development
-
-Database Integration
-
-VPN Networking
-
----
-
-# Contact
-
-Adeleke Gregory Ajayi
-
-LinkedIn  
-https://www.linkedin.com/in/gregory-ajayi
-
-GitHub  
-https://github.com/lekxid
-
-Email  
-adelekeajayi001@gmail.com
-
----
-
-# Portfolio Status
-
-Infrastructure Status: **Online**
-
-Stack:  
-Azure VM + Docker + Caddy + Backend API + HTTPS + CI/CD
-
-This project is actively maintained and used as a personal cloud engineering lab.
+Direct website contact delivery is not connected. The form opens a clearly labeled email draft. See OPERATIONS.md for monitoring contracts, deployment, rollback, and safe Azure continuation.
